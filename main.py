@@ -5,7 +5,7 @@ import random
 def check_previous_guesses():
     if guess in previous_guesses:
         print("You have already guessed this")
-        return True
+        exit()
     return False
 
 
@@ -48,5 +48,6 @@ while not is_game_over():
         errors += 1
         print(f"Oops :( No such word, you have {ERRORS_TO_LOSE - errors} lives more")
     previous_guesses.add(guess)
-
-
+    if errors == ERRORS_TO_LOSE:
+        print("Your lives have finished! You loos(")
+        exit()
