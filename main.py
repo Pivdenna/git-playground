@@ -2,6 +2,13 @@ import words_fetcher
 import random
 
 
+def check_previous_guesses():
+    if guess in previous_guesses:
+        print("You have already guessed this")
+        return True
+    return False
+
+
 def congratulate_user():
     print(f"Congratulations, you won! your words: {guesses}")
 
@@ -25,9 +32,11 @@ word = words[random.randrange(0, len(words))]
 print(f"Can you make up {WORDS_TO_WIN} words from letters in word provided by me?")
 print(f"Your word is '{word}'")
 
+previous_guesses = set()
 
 while not is_game_over():
     guess = input("Your next take: ")
+    check_previous_guesses()
     if guess in full_list:
         guessed += 1
         guesses.append(guess)
@@ -38,3 +47,6 @@ while not is_game_over():
     else:
         errors += 1
         print(f"Oops :( No such word, you have {ERRORS_TO_LOSE - errors} lives more")
+    previous_guesses.add(guess)
+
+
